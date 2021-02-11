@@ -1,8 +1,9 @@
-﻿
+﻿using BookMan.ConsoleApp.Models;
+using BookMan.ConsoleApp.Views;
+
 namespace BookMan.ConsoleApp.Controllers
 {
-	using Models;
-	using Views;
+	
 	class BookController
 	{
 		/// <summary>
@@ -41,6 +42,17 @@ namespace BookMan.ConsoleApp.Controllers
 			BookCreateView view = new BookCreateView();
 
 			// Hiển thị ra màn hình
+			view.Render();
+		}
+
+		/// <summary>
+		/// kích hoạt chức năng cập nhật
+		/// </summary>
+		/// <param name="id"></param>
+		public void Update(int id)
+		{
+			var book = new Book();
+			var view = new BookUpdateView(book);
 			view.Render();
 		}
 	}

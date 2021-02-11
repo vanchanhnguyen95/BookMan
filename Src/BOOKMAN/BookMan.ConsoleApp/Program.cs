@@ -30,6 +30,10 @@ namespace BookMan.ConsoleApp
 						controller.Create();
 						break;
 
+					case "update":
+						controller.Update(1);
+						break;
+
 					default:
 						Console.WriteLine("Unknown command");
 						break;
