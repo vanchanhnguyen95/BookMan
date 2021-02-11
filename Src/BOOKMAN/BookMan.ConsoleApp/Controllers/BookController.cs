@@ -27,7 +27,20 @@ namespace BookMan.ConsoleApp.Controllers
 
 			// Khởi tạo view
 			BookSingleView view = new BookSingleView(model);
+
 			// Gọi phương thức Render để thực sự hiển thị ra màn hình
+			view.Render();
+		}
+
+		/// <summary>
+		/// Kích hoạt chức năng nhập dữ liệu cho 1 cuốn sách
+		/// </summary>
+		public void Create()
+		{
+			// Khởi tạo object
+			BookCreateView view = new BookCreateView();
+
+			// Hiển thị ra màn hình
 			view.Render();
 		}
 	}
