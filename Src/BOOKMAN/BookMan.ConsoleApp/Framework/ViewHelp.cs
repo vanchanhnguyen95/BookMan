@@ -86,5 +86,47 @@ namespace BookMan.ConsoleApp.Framework
 			Console.ResetColor();
 			return value;
 		}
+
+		/// <summary>
+		/// cập nhật giá trị kiểu string. Nếu ấn enter mà không nhập dữ liệu sẽ trả lại giá trị cũ.
+		/// </summary>
+		/// <param name="label">dòng thông báo</param>
+		/// <param name="oldValue">giá trị gốc</param>
+		/// <param name="labelColor">màu chữ thông báo</param>
+		/// <param name="valueColor">màu chữ dữ liệu</param>
+		/// <returns></returns>
+		public static string InputString(string label, string oldValue, ConsoleColor labelColor = ConsoleColor.Magenta, ConsoleColor valueColor = ConsoleColor.White)
+		{
+			Write($"{label}: ", labelColor);
+			WriteLine(oldValue, ConsoleColor.Yellow);
+			Write("New value >> ", ConsoleColor.Green);
+			Console.ForegroundColor = valueColor;
+			string newValue = Console.ReadLine();
+			return string.IsNullOrEmpty(newValue.Trim()) ? oldValue : newValue;
+		}
+
+		public static int InputInt(string label, int oldValue, ConsoleColor labelColor = ConsoleColor.Magenta, ConsoleColor valueColor = ConsoleColor.White)
+		{
+			Write($"{label}: ", labelColor);
+			WriteLine($"{oldValue}", ConsoleColor.Yellow);
+			Write("New value >> ", ConsoleColor.Green);
+			Console.ForegroundColor = valueColor;
+			string str = Console.ReadLine();
+			if (string.IsNullOrEmpty(str)) return oldValue;
+			if (str.ToInt(out int i)) return i; //sử dụng phương thức mở rộng ToInt
+			return oldValue;
+		}
+
+		public static bool InputBool(string label, bool oldValue, ConsoleColor labelColor = ConsoleColor.Magenta, ConsoleColor valueColor = ConsoleColor.White)
+		{
+			Write($"{label}: ", labelColor);
+			//sử dụng phương thức mở rộng ToString
+			WriteLine(oldValue.ToString("y/n"), ConsoleColor.Yellow);
+			Write("New value >> ", ConsoleColor.Green);
+			Console.ForegroundColor = valueColor;
+			string str = Console.ReadLine();
+			if (string.IsNullOrEmpty(str)) return oldValue;
+			return str.ToBool(); //sử dụng phương thức mở rộng ToBool
+		}
 	}
 }
