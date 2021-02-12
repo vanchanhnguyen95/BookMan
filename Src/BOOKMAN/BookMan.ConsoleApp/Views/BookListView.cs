@@ -35,5 +35,17 @@ namespace BookMan.ConsoleApp.Views
 				i++;
 			}
 		}
+
+		/// <summary>
+		/// RenderToFile
+		/// </summary>
+		/// <param name="path"></param>
+		public void RenderToFile(string path)
+		{
+			ViewHelp.WriteLine($"Saving data to file '{path}'");
+			var json = Newtonsoft.Json.JsonConvert.SerializeObject(Book);
+			System.IO.File.WriteAllText(path, json);
+			ViewHelp.WriteLine("Done!");
+		}
 	}
 }

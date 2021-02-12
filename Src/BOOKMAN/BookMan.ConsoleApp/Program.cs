@@ -34,6 +34,13 @@ namespace BookMan.ConsoleApp
 				action: p => controller.Single(p["id"].ToInt()),
 				help: "[single ? id = < value >]\r\nhiển thị một cuốn sách theo id");
 
+			r.Register(route: "list file",
+				action: p => controller.List(p["path"]),
+				help: "[list file ? path = <value>]\r\nhiển thị tất cả sách");
+			r.Register(route: "single file",
+				action: p => controller.Single(p["id"].ToInt(), p["path"]),
+				help: "[single file ? id = <value> & path = <value>]");
+
 			while (true)
 			{
 				ViewHelp.Write("# Request >>> ", ConsoleColor.Green);
