@@ -4,11 +4,11 @@ using BookMan.ConsoleApp.Models;
 
 namespace BookMan.ConsoleApp.Views
 {
-	internal class BookUpdateView : ViewBase
+	internal class BookUpdateView : ViewBase<Book>
 	{
 		public BookUpdateView(Book model) : base(model) { }
 
-		public void Render()
+		public override void Render()
 		{
 			ViewHelp.WriteLine("UPDATE BOOK INFORMATION", ConsoleColor.Green);
 			// chuyển đổi kiểu từ object sang Book, chỉ áp dụng với kiểu class

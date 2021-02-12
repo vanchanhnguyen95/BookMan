@@ -7,19 +7,14 @@ namespace BookMan.ConsoleApp.Views
 	/// <summary>
 	/// class để hiển thị danh sách Book
 	/// </summary>
-	internal class BookListView : ViewBase
+	internal class BookListView : ViewBase<Book[]>
 	{
-		protected Book[] Book; // mảng của các object kiểu Book
-
-		public BookListView(Book[] books)
-		{
-			Book = books;
-		}
+		public BookListView(Book[] model) : base(model) { }
 
 		/// <summary>
 		/// in danh sách ra console
 		/// </summary>
-		public void Render()
+		public override void Render()
 		{
 			if (((Book[])Model).Length == 0)
 			{
@@ -37,7 +32,7 @@ namespace BookMan.ConsoleApp.Views
 				ViewHelp.WriteLine($" {b.Title}", b.Reading ? ConsoleColor.Cyan : ConsoleColor.White);
 			}
 
-			Console.ResetColor();
+			ViewHelp.WriteLine($"{Model.Length} item(s)", ConsoleColor.Green);
 		}
 
 	}

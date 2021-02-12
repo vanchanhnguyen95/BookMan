@@ -1,5 +1,5 @@
 ﻿using BookMan.ConsoleApp.DataServices;
-using BookMan.ConsoleApp.Models;
+using BookMan.ConsoleApp.Framework;
 using BookMan.ConsoleApp.Views;
 
 namespace BookMan.ConsoleApp.Controllers
@@ -7,7 +7,7 @@ namespace BookMan.ConsoleApp.Controllers
 	/// <summary>
 	/// lớp điều khiển, giúp ghép nối dữ liệu sách với giao diện
 	/// </summary>
-	internal class BookController
+	internal class BookController : ControllerBase
 	{
 		protected Repository Repository;
 
@@ -29,12 +29,8 @@ namespace BookMan.ConsoleApp.Controllers
 			// lấy dữ liệu qua repository
 			var book = Repository.Select(id);
 
-			// Khởi tạo view
-			BookSingleView view = new BookSingleView(book);
-
 			// gọi phương thức Render để thực sự hiển thị ra màn hình
-			if (!string.IsNullOrEmpty(path)) { view.RenderToFile(path); return; }
-			view.Render();
+			Render(new BookSingleView(book), path);
 		}
 
 		/// <summary>
@@ -42,11 +38,8 @@ namespace BookMan.ConsoleApp.Controllers
 		/// </summary>
 		public void Create()
 		{
-			// Khởi tạo object
-			BookCreateView view = new BookCreateView();
-
 			// Hiển thị ra màn hình
-			view.Render();
+			Render(new BookCreateView());
 		}
 
 		/// <summary>
@@ -56,11 +49,7 @@ namespace BookMan.ConsoleApp.Controllers
 		{
 			// lấy dữ liệu qua repository
 			var model = Repository.Select();
-
-			// khởi tạo view
-			BookListView view = new BookListView(model);
-			if (!string.IsNullOrEmpty(path)) { view.RenderToFile(path); return; }
-			view.Render();
+			Render(new BookListView(model), path);
 		}
 
 		/// <summary>
@@ -71,8 +60,7 @@ namespace BookMan.ConsoleApp.Controllers
 		{
 			// lấy dữ liệu qua repository
 			var model = Repository.Select(id);
-			var view = new BookUpdateView(model);
-			view.Render();
+			Render(new BookUpdateView(model));
 		}
 	}
 }
