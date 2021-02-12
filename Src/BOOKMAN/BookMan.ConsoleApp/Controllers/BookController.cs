@@ -1,5 +1,6 @@
 ﻿using BookMan.ConsoleApp.DataServices;
 using BookMan.ConsoleApp.Framework;
+using BookMan.ConsoleApp.Models;
 using BookMan.ConsoleApp.Views;
 
 namespace BookMan.ConsoleApp.Controllers
@@ -36,10 +37,16 @@ namespace BookMan.ConsoleApp.Controllers
 		/// <summary>
 		/// Kích hoạt chức năng nhập dữ liệu cho 1 cuốn sách
 		/// </summary>
-		public void Create()
+		public void Create(Book book = null)
 		{
-			// Hiển thị ra màn hình
-			Render(new BookCreateView());
+			if (book == null)
+			{
+				Render(new BookCreateView());
+				return;
+			}
+
+			Repository.Insert(book);
+			Success("Book created!");
 		}
 
 		/// <summary>
@@ -56,11 +63,18 @@ namespace BookMan.ConsoleApp.Controllers
 		/// kích hoạt chức năng cập nhật
 		/// </summary>
 		/// <param name="id"></param>
-		public void Update(int id)
+		public void Update(int id, Book book = null)
 		{
-			// lấy dữ liệu qua repository
-			var model = Repository.Select(id);
-			Render(new BookUpdateView(model));
+			if (book == null)
+			{
+				var model = Repository.Select(id);
+				var view = new BookUpdateView(model);
+				Render(view);
+				return;
+			}
+
+			Repository.Update(id, book);
+			Success("Book updated!");
 		}
 	}
 }

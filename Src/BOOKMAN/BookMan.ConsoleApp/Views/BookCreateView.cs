@@ -43,6 +43,20 @@ namespace BookMan.ConsoleApp.Views
 
 			// nhập giá trị cho biến file
 			var file = ViewHelp.InputString("File");
+
+			var request =
+				"do create ? " +
+				$"title = {title}" +
+				$" & authors = {authors}" +
+				$" & publisher = {publisher}" +
+				$" & year = {year}" +
+				$" & edition = {edition}" +
+				$" & tags = {tags}" +
+				$" & description = {description}" +
+				$" & rate = {rate}" +
+				$" & reading = {reading}" +
+				$" & file = {file}";
+			Router.Forward(request);
 		}
 
 	}
