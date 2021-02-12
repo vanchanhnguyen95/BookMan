@@ -7,8 +7,11 @@ namespace BookMan.ConsoleApp.DataServices
 {
 	public class BinaryDataAccess : IDataAccess
 	{
+		//public List<Book> Books { get; set; } = new List<Book>();
+		//private readonly string _file = "data.dat";
+
 		public List<Book> Books { get; set; } = new List<Book>();
-		private readonly string _file = "data.dat";
+		private readonly string _file = Config.Instance.DataFile; // "data.dat";
 
 		public void Load()
 		{

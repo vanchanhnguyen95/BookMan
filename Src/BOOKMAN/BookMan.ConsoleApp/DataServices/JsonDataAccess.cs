@@ -7,8 +7,10 @@ namespace BookMan.ConsoleApp.DataServices
 {
 	public class JsonDataAccess : IDataAccess
 	{
+		//public List<Book> Books { get; set; } = new List<Book>();
+		//private readonly string _file = "data.json";
 		public List<Book> Books { get; set; } = new List<Book>();
-		private readonly string _file = "data.json";
+		private readonly string _file = Config.Instance.DataFile; // "data.json";
 
 		/// <summary>
 		/// Load
