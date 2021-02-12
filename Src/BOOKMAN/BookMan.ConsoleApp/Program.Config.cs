@@ -13,6 +13,8 @@
 
 			BookController controller = new BookController(context);
 
+			ShellController shell = new ShellController(context);
+
 			Router r = Router.Instance;
 
 			r.Register("about", About);
@@ -30,6 +32,42 @@
 			r.Register(route: "do update",
 				action: p => controller.Update(p["id"].ToInt(), toBook(p)),
 				help: "this route should be used only in code");
+
+			r.Register(route: "delete",
+				action: p => controller.Delete(p["id"].ToInt()),
+				help: "[delete ? id = <value>");
+			r.Register(route: "do delete",
+				action: p => controller.Delete(p["id"].ToInt(), true),
+				help: "this route should be used only in code");
+
+			r.Register(route: "filter",
+				action: p => controller.Filter(p["key"]),
+				help: "[filter ? key = <value>]rntìm sách theo từ khóa");
+
+			r.Register(route: "add shell",
+				action: p => shell.Shell(p["path"], p["ext"]),
+				help: "[add shell ? path = <value>]");
+
+			r.Register(route: "read",
+				action: p => shell.Read(p["id"].ToInt()),
+				help: "[read ? id = <value>]");
+
+			r.Register(route: "mark",
+				action: p => controller.Mark(p["id"].ToInt()),
+				help: "[mark ? id = <value>]");
+			r.Register(route: "unmark",
+				action: p => controller.Mark(p["id"].ToInt(), false),
+				help: "[unmark ? id = <value>]");
+			r.Register(route: "show marks",
+				action: p => controller.ShowMarks(),
+				help: "[show marks]");
+
+			r.Register(route: "clear",
+				action: p => shell.Clear(),
+				help: "[clear]rnUse with care");
+			r.Register(route: "do clear",
+				action: p => shell.Clear(true),
+				help: "[clear]rnUse with care");
 
 			r.Register(route: "list",
 				action: p => controller.List(),

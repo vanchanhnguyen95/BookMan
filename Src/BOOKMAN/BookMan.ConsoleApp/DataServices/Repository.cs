@@ -121,5 +121,27 @@ namespace BookMan.ConsoleApp.DataServices
 			b.Year = book.Year;
 			return true;
 		}
+
+		/// <summary>
+		/// SelectMarked
+		/// </summary>
+		/// <returns></returns>
+		public Book[] SelectMarked()
+		{
+			var list = new List<Book>();
+			foreach (var b in Books)
+			{
+				if (b.Reading) list.Add(b);
+			}
+			return list.ToArray();
+		}
+
+		/// <summary>
+		/// Clear
+		/// </summary>
+		public void Clear()
+		{
+			_context.Books.Clear();
+		}
 	}
 }
