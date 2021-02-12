@@ -8,13 +8,18 @@ namespace BookMan.ConsoleApp.DataServices
 		/// <summary>
 		/// SimpleDataAccess
 		/// </summary>
-		protected readonly SimpleDataAccess _context;
+		//protected readonly SimpleDataAccess _context;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected readonly BinaryDataAccess _context;
 
 		/// <summary>
 		/// Repository
 		/// </summary>
 		/// <param name="context"></param>
-		public Repository(SimpleDataAccess context)
+		public Repository(BinaryDataAccess context)
 		{
 			_context = context;
 			_context.Load();

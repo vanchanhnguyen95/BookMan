@@ -16,7 +16,7 @@ namespace BookMan.ConsoleApp.Controllers
 		/// Constructor
 		/// </summary>
 		/// <param name="context"></param>
-		public BookController(SimpleDataAccess context)
+		public BookController(BinaryDataAccess context)
 		{
 			Repository = new Repository(context);
 		}

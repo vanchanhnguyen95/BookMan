@@ -9,7 +9,7 @@
 	{
 		private static void ConfigRouter()
 		{
-			SimpleDataAccess context = new SimpleDataAccess();
+			BinaryDataAccess context = new BinaryDataAccess();
 
 			BookController controller = new BookController(context);
 
@@ -75,6 +75,10 @@
 			r.Register(route: "list file",
 				action: p => controller.List(p["path"]),
 				help: "[list file ? path = <value>]rnhiển thị tất cả sách");
+
+			r.Register(route: "save shell",
+				action: p => shell.Save(),
+				help: "[save shell]");
 
 			r.Register(route: "single",
 				action: p => controller.Single(p["id"].ToInt()),

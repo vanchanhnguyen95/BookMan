@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\ShellController.cs" />
+    <Compile Include="DataServices\BinaryDataAccess.cs" />
     <Compile Include="DataServices\Repository.cs" />
     <Compile Include="DataServices\SimpleDataAccess.cs" />
     <Compile Include="Framework\ControllerBase.cs" />
