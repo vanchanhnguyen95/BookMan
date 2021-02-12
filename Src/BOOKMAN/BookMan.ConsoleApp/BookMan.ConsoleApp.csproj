@@ -49,8 +49,11 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\ShellController.cs" />
     <Compile Include="DataServices\BinaryDataAccess.cs" />
+    <Compile Include="DataServices\IDataAccess.cs" />
+    <Compile Include="DataServices\JsonDataAccess.cs" />
     <Compile Include="DataServices\Repository.cs" />
     <Compile Include="DataServices\SimpleDataAccess.cs" />
+    <Compile Include="DataServices\XmlDataAccess.cs" />
     <Compile Include="Framework\ControllerBase.cs" />
     <Compile Include="Framework\Extension.cs" />
     <Compile Include="Framework\Message.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="Views\BookCreateView.cs" />
     <Compile Include="Views\BookListView.cs" />
     <Compile Include="Views\BookSingleView.cs" />
+    <Compile Include="Views\BookStatsView.cs" />
     <Compile Include="Views\BookUpdateView.cs" />
   </ItemGroup>
   <ItemGroup>

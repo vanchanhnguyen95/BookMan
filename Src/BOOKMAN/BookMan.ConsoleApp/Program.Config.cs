@@ -88,6 +88,10 @@
 				action: p => controller.Single(p["id"].ToInt(), p["path"]),
 				help: "[single file ? id = <value> & path = <value>]");
 
+			r.Register(route: "show stats",
+				action: p => controller.Stats(),
+				help: "[show stats]");
+
 
 			//r.Register(route: "",
 			//    action: null,
