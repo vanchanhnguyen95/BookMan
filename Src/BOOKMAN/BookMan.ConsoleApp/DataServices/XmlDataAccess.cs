@@ -6,7 +6,7 @@ using BookMan.ConsoleApp.Models;
 
 namespace BookMan.ConsoleApp.DataServices
 {
-	public class XmlDataAccess
+	public class XmlDataAccess : IDataAccess
 	{
 		public List<Book> Books { get; set; } = new List<Book>();
 		private readonly string _file = "data.xml";

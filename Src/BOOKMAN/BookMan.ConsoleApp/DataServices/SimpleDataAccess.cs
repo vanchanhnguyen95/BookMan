@@ -3,7 +3,7 @@ using BookMan.ConsoleApp.Models;
 
 namespace BookMan.ConsoleApp.DataServices
 {
-	public class SimpleDataAccess
+	public class SimpleDataAccess : IDataAccess
 	{
 		public List<Book> Books { get; set; }
 

@@ -1,15 +1,11 @@
-﻿using BookMan.ConsoleApp.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+using BookMan.ConsoleApp.Models;
 
 namespace BookMan.ConsoleApp.DataServices
 {
-	public class BinaryDataAccess
+	public class BinaryDataAccess : IDataAccess
 	{
 		public List<Book> Books { get; set; } = new List<Book>();
 		private readonly string _file = "data.dat";
