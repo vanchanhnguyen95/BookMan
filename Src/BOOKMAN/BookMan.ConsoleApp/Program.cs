@@ -2,6 +2,7 @@
 
 namespace BookMan.ConsoleApp
 {
+	using BookMan.ConsoleApp.DataServices;
 	using Controllers;
 	class Program
 	{
@@ -11,8 +12,10 @@ namespace BookMan.ConsoleApp
 		/// <param name="args"></param>
 		private static void Main(string[] args)
 		{
+			// Khởi tạo  context
+			SimpleDataAccess context = new SimpleDataAccess();
 			// Khởi tạo  controller
-			BookController controller = new BookController();
+			BookController controller = new BookController(context);
 
 			// Gọi controller
 			while (true)
