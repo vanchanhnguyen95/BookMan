@@ -4,29 +4,27 @@ using BookMan.ConsoleApp.Models;
 
 namespace BookMan.ConsoleApp.Views
 {
-	class BookUpdateView
+	internal class BookUpdateView : ViewBase
 	{
-		protected Book Book;
-		public BookUpdateView(Book book)
-		{
-			Book = book;
-		}
+		public BookUpdateView(Book model) : base(model) { }
 
 		public void Render()
 		{
-			ViewHelp.WriteLine("UPDATE BOOK INFORMATION", ConsoleColor.Green); //sử dụng phương thức static
+			ViewHelp.WriteLine("UPDATE BOOK INFORMATION", ConsoleColor.Green);
+			// chuyển đổi kiểu từ object sang Book, chỉ áp dụng với kiểu class
+			var model = Model as Book;
 
-			var authors = ViewHelp.InputString("Authors", Book.Authors);
-			var title = ViewHelp.InputString("Title", Book.Title);
-			var publisher = ViewHelp.InputString("Publisher", Book.Publisher);
-			var isbn = ViewHelp.InputString("Isbn", Book.Isbn);
-			var tags = ViewHelp.InputString("Tags", Book.Tags);
-			var description = ViewHelp.InputString("Description", Book.Description);
-			var file = ViewHelp.InputString("File", Book.File);
-			var year = ViewHelp.InputInt("Year", Book.Year);
-			var edition = ViewHelp.InputInt("Edition", Book.Edition);
-			var rating = ViewHelp.InputInt("Rate", Book.Rating);
-			var reading = ViewHelp.InputBool("Reading", Book.Reading);
+			var authors = ViewHelp.InputString("Authors", model.Authors);
+			var title = ViewHelp.InputString("Title", model.Title);
+			var publisher = ViewHelp.InputString("Publisher", model.Publisher);
+			var isbn = ViewHelp.InputString("Isbn", model.Isbn);
+			var tags = ViewHelp.InputString("Tags", model.Tags);
+			var description = ViewHelp.InputString("Description", model.Description);
+			var file = ViewHelp.InputString("File", model.File);
+			var year = ViewHelp.InputInt("Year", model.Year);
+			var edition = ViewHelp.InputInt("Edition", model.Edition);
+			var rating = ViewHelp.InputInt("Rate", model.Rating);
+			var reading = ViewHelp.InputBool("Reading", model.Reading);
 		}
 	}
 }

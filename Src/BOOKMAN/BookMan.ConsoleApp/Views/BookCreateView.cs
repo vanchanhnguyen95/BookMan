@@ -3,11 +3,9 @@ using BookMan.ConsoleApp.Framework;
 
 namespace BookMan.ConsoleApp.Views
 {
-	internal class BookCreateView
+	internal class BookCreateView : ViewBase
 	{
-		public BookCreateView()
-		{
-		}
+		public BookCreateView() { }
 
 		/// <summary>
 		/// Yêu cầu người dùng nhập từng thông tin và lưu lại thông tin đó
