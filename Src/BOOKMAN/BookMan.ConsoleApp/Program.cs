@@ -1,9 +1,11 @@
 ﻿using System;
+using BookMan.ConsoleApp.Controllers;
+using BookMan.ConsoleApp.DataServices;
+using BookMan.ConsoleApp.Framework;
 
 namespace BookMan.ConsoleApp
 {
-	using BookMan.ConsoleApp.DataServices;
-	using Controllers;
+	
 	class Program
 	{
 		/// <summary>
@@ -12,40 +14,44 @@ namespace BookMan.ConsoleApp
 		/// <param name="args"></param>
 		private static void Main(string[] args)
 		{
-			// Khởi tạo  context
-			SimpleDataAccess context = new SimpleDataAccess();
-			// Khởi tạo  controller
+			Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+			var context = new SimpleDataAccess();
 			BookController controller = new BookController(context);
 
-			// Gọi controller
+			Router.Instance.Register("about", About);
+			Router.Instance.Register("help", Help);
+
 			while (true)
 			{
-				Console.Write("Request> ");
+				ViewHelp.Write("# Request >>> ", ConsoleColor.Green);
 				string request = Console.ReadLine();
 
-				switch (request.ToLower())
-				{
-					case "single":
-						controller.Single(1);
-						break;
+				Router.Instance.Forward(request);
 
-					case "create":
-						controller.Create();
-						break;
-
-					case "update":
-						controller.Update(1);
-						break;
-
-					case "list":
-						controller.List();
-						break;
-
-					default:
-						Console.WriteLine("Unknown command");
-						break;
-				}
+				Console.WriteLine();
 			}
+		}
+
+		private static void About(Parameter parameter)
+		{
+			ViewHelp.WriteLine("BOOK MANAGER version 1.0", ConsoleColor.Green);
+			ViewHelp.WriteLine("by ChiChi@TuHocIct.com", ConsoleColor.Magenta);
+		}
+
+		private static void Help(Parameter parameter)
+		{
+			if (parameter == null)
+			{
+				ViewHelp.WriteLine("SUPPORTED COMMANDS:", ConsoleColor.Green);
+				ViewHelp.WriteLine(Router.Instance.GetRoutes(), ConsoleColor.Yellow);
+				ViewHelp.WriteLine("type: help ? cmd= <command> to get command details", ConsoleColor.Cyan);
+				return;
+			}
+			Console.BackgroundColor = ConsoleColor.DarkBlue;
+			var command = parameter["cmd"].ToLower();
+			ViewHelp.WriteLine(Router.Instance.GetHelp(command));
+
 		}
 	}
 }
